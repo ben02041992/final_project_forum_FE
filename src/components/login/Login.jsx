@@ -31,7 +31,12 @@ const Login = ({ onToggle }) => {
     <div className="selector">
       {showLoginForm ? (
         <div className="wrapperLogin">
-          <img className="logo" src=".\src\assets\image.png" alt="" srcset="" />
+          <img
+            className="logo"
+            src=".\src\assets\Skull_and_Crossbones_bi.png"
+            alt=""
+            srcset=""
+          />
           <div className="loginBox">
             <h1 className="signupPrompt">Gamer4rum</h1>
             <h2 className="signupPrompt">Login</h2>

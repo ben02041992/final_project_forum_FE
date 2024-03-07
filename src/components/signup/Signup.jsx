@@ -2,7 +2,7 @@ import { useState } from "react";
 
 // import { signup } from "../../utils/fetch";
 
-import "./SignUp.css";
+import "./Signup.css";
 
 const Signup = ({ onToggle }) => {
   const [username, setUsername] = useState("");
