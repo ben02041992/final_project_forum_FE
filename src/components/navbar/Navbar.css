@@ -1,0 +1,88 @@
+.mobile{
+    display: none;
+}
+.nomobile{
+    display: block;
+}
+.nav{
+    display: flex;
+    box-sizing: border-box;
+    padding:10px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #22132e;
+    color: #f2f2f2;
+}
+.logoName{
+    display: flex;
+    box-sizing: border-box;
+    padding:5px;
+    align-items: center;
+    gap:5px;
+}
+.logoName img{
+    height:40px;
+}
+.logoName h1{
+    font-size: 40px;
+    line-height: 33px;
+}
+.userSettings{
+    display: flex;
+    gap:5px;
+}
+.userSettings img{
+    height:40px;
+    border-radius: 20px;
+}
+.userSettings a{
+    font-weight: bold;
+}
+.userOptions p{
+    font-size: 10px;
+}
+.userOptions ul{
+    display: flex;
+    gap: 20px;
+}
+.userOptionsB{
+    position:absolute;
+    background-color: red;
+    width:120px;
+    right:0;
+    top:70px;
+    box-sizing: border-box;
+    padding:10px;
+}
+.userOptionsB ul{
+    display: block;
+    text-align: center;
+}
+.burgerMenu{
+    display: none;
+    align-items: center;
+}
+.burgerMenu button{
+    font-size: 45px;
+    line-height: 50px;
+}
+@media only screen and (max-width: 630px){ /* if thinner than this then nav looks awful. turning it into a burger */
+    .nomobile{
+        display: none;
+    }
+    .mobile{
+        display: block;
+    }
+}
+@media only screen and (max-width:390px){
+    .logoName h1{
+        display: none;
+    }
+    .nav{
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+    .userOptionsB{
+        top:54px;
+    }
+}
