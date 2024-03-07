@@ -1,36 +1,67 @@
 export const signup = async (username, email, password) => {
-    const response = await fetch("<!--backendlink-->", {
-        method: "POST",
-        mode: "cors",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            username: username,
-            email: email,
-            password: password,
-        })
-    });
+  const response = await fetch(
+    `${import.meta.env.VITE_APP_BASE_URL}/users/signup`,
+    {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        email: email,
+        password: password,
+      }),
+    }
+  );
 
-    const data = await response.json();
-    console.log("data in fetch signup", data);
-    return data;
-}
+  const data = await response.json();
+  console.log("data in fetch signup", data);
+};
 
 export const login = async (username, password) => {
-    const response = await fetch("<!--backendlink-->", {
-        method: "POST",
+  const response = await fetch(
+    `${import.meta.env.VITE_APP_BASE_URL}/users/login`,
+    {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    }
+  );
+
+  const data = await response.json();
+  console.log("data in fetch signup", data);
+  return data;
+};
+
+export const getAllUsers = async (jwt) => {
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_APP_BASE_URL}/users/getAllUsers`,
+      {
+        method: "GET",
         mode: "cors",
         headers: {
-            "Content-Type": "application/json",
+          "Content-Type": "application/json",
+          Authorization: jwt,
         },
-        body: JSON.stringify({
-            username: username,
-            password: password,
-        })
-    });
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`error! Status: ${response.status}`);
+    }
 
     const data = await response.json();
-    console.log("data in fetch login", data);
     return data;
-}
+  } catch (error) {
+    console.error("Error in getAllUsers:", error.message);
+    throw error;
+  }
+};
