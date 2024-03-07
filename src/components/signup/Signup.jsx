@@ -1,32 +1,82 @@
-import React from 'react';
 import { useState } from "react";
-import { signup } from "../../utils/fetch";
 
-const Signup = () => {
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+// import { signup } from "../../utils/fetch";
 
-    const changeHandler = (e, setter, state) => {
-        setter(e.target.value);
+import "./SignUp.css";
+
+const Signup = ({ onToggle }) => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [signupStatus, setSignupStatus] = useState(null);
+
+  const changeHandler = (e, setter, state) => {
+    setter(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await signup(username, email, password);
+      setSignupStatus("success");
+      console.log("Hello from signup handlesubmit");
+    } catch (error) {
+      console.error("Signup failed:", error);
+      setSignupStatus("error");
     }
+  };
 
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-        await signup(username, email, password);
-    }
-
-    return (
-        <div>
-            <h2>Signup</h2>
-            <form onSubmit={handleSubmit}>
-                <input placeholder="username" onChange={(e) => changeHandler(e, setUsername, username)}/>
-                <input placeholder="email" onChange={(e) => changeHandler(e, setEmail, email)}/>
-                <input placeholder="password" onChange={(e) => changeHandler(e, setPassword, password)}/>
-                <button type="submit">Signup</button>
-            </form>
+  return (
+    <div className="wrapperLogin">
+      <img src=".\src\assets\image.png" alt="" srcset="" />
+      <div className="loginBox">
+        <h1>Gamer4rum</h1>
+        <h3 className="loginTitle">Signup</h3>
+        <form className="loginForm" onSubmit={handleSubmit}>
+          <input
+            className="loginInput"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => changeHandler(e, setUsername)}
+          />
+          <input
+            className="loginInput"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => changeHandler(e, setEmail)}
+          />
+          <input
+            className="loginInput"
+            placeholder="Password"
+            type="password"
+            value={password}
+            onChange={(e) => changeHandler(e, setPassword)}
+          />
+          <button className="sub-but" type="submit">
+            Sign Up
+          </button>
+          {signupStatus === "success" && (
+            <p className="signup-success-message">
+              Signup successful! You can now log in.
+            </p>
+          )}
+          {signupStatus === "error" && (
+            <p className="signup-error-message">
+              Signup failed. Please try again.
+            </p>
+          )}
+        </form>
+        <div className="signupPrompt">
+          <p>
+            Already have an account?{" "}
+            <button className="signup-but" onClick={onToggle}>
+              Login
+            </button>
+          </p>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
-export default Signup
+export default Signup;
