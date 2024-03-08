@@ -33,15 +33,15 @@ const Login = ({ onToggle }) => {
         <div className="wrapperLogin">
           <img
             className="logo"
-            src=".\src\assets\Skull_and_Crossbones_bi.png"
-            alt=""
+            src=".\images\Skull_and_Crossbones_bi.png"
+            alt="skull and bones logo"
             srcset=""
           />
           <div className="loginBox">
             <img
               className="logo-name"
-              src=".\src\assets\textlogo-bi.png"
-              alt=""
+              src=".\images\textlogo-bi.png"
+              alt="Gamer4rum logo"
               srcset=""
             />
 
