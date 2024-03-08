@@ -1,4 +1,4 @@
-.game-box {
+.recent-box {
   border: 1px double #471b6d;
   margin-top: 25px;
   position: relative;
@@ -8,7 +8,7 @@
   border-radius: 20px;
 }
 
-.game-image {
+.recent-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -26,15 +26,24 @@
   background-color: rgba(255, 255, 255, 0);
 }
 
-.gradient-overlay {
+.gradient-overlay-recent {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), #471b6d);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1),
+    rgba(31, 19, 239, 1)
+  );
 }
 
 .game-box:hover .game-image {
   opacity: 0.8; /* Adjust as needed */
+}
+
+.no-messages {
+  background-color: transparent;
+  color: gray;
 }

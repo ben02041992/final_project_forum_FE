@@ -17,6 +17,7 @@ const Signup = ({ onToggle }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log("works");
       await signup(username, email, password);
       setSignupStatus("success");
       console.log("Hello from signup handlesubmit");

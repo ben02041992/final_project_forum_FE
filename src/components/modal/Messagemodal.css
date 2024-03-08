@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: center;
   background-color: transparent;
+  z-index: 9999;
 }
 
 .modal-card {
@@ -34,6 +35,7 @@
 .modal-messages {
   margin-top: 10px;
   border: 1px solid rgba(194, 0, 0, 1);
+  padding: 5px;
 }
 .messenger {
   display: flex;
@@ -44,6 +46,7 @@
   margin-top: 20px;
   height: 40px;
   margin-right: 5px;
+  padding: 5px;
 }
 
 .send-but {
