@@ -31,14 +31,14 @@ const SignUp = ({ onToggle }) => {
       <div className="wrapperLogin">
         <img
           className="logo"
-          src=".\src\assets\Skull_and_Crossbones_bi.png"
+          src=".\images\Skull_and_Crossbones_bi.png"
           alt=""
           srcset=""
         />
         <div className="loginBox">
           <img
             className="logo-name"
-            src=".\src\assets\textlogo-bi.png"
+            src=".\images\textlogo-bi.png"
             alt=""
             srcSet=""
           />
