@@ -1,3 +1,6 @@
+.nav *{
+  background: transparent;
+}
 .mobile{
     display: none;
 }

@@ -34,15 +34,15 @@ const Login = ({ onToggle }) => {
           <img
             className="logo"
             src=".\src\assets\Skull_and_Crossbones_bi.png"
-            alt=""
+            alt="a skull and with a pink and blue gradient outline"
             srcset=""
           />
           <div className="loginBox">
             <img
               className="logo-name"
               src=".\src\assets\textlogo-bi.png"
-              alt=""
-              srcset=""
+              alt="gamer4rum"
+              srcSet=""
             />
 
             <h2 className="signupPrompt">Login</h2>

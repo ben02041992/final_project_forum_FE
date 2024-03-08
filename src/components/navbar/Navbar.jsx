@@ -6,7 +6,7 @@ const Navbar = (props) => {
     <div className="nav">
         <div className="logoName">
             <img alt="Gamer4Rum logo" src="./src/assets/Skull_and_Crossbones_bi.png"/>
-            <h1>Gamer4Rum</h1>
+            <img alt="Gamer4Rum" src="./src/assets/textlogo-bi.png"/>
         </div>
         <div className="userSettings nomobile">
             <img alt="LoggedInPFP" src={(props.user).pfp}/>
@@ -32,7 +32,7 @@ const Navbar = (props) => {
                 </div>
             </div>
     </div>
-  )
-}
+  );
+};
 
 export default Navbar
