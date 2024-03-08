@@ -38,7 +38,13 @@ const Login = ({ onToggle }) => {
             srcset=""
           />
           <div className="loginBox">
-            <h1 className="signupPrompt">Gamer4rum</h1>
+            <img
+              className="logo-name"
+              src=".\src\assets\textlogo-bi.png"
+              alt=""
+              srcset=""
+            />
+
             <h2 className="signupPrompt">Login</h2>
             <form className="loginForm" onSubmit={handleSubmit}>
               <input

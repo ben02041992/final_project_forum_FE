@@ -2,3 +2,12 @@
   color: #ebe9fc;
   background-color: #010104;
 }
+button {
+  border: 1px solid transparent;
+  transition: border-color 0.3s ease-in-out;
+}
+button:hover {
+  border: 1px solid rgba(194, 0, 0, 1);
+  border-radius: 5px;
+  background-color: #161616;
+}

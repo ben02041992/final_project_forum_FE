@@ -1,6 +1,6 @@
 export const signup = async (username, email, password) => {
   const response = await fetch(
-    `${import.meta.env.VITE_APP_BASE_URL}/users/signup`,
+    `${import.meta.env.VITE_APP_BASE_URL}/userlist/signup`,
     {
       method: "POST",
       mode: "cors",
