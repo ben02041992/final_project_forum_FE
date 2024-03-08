@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-// import { signup } from "../../utils/fetch";
+import { signup } from "../../utils/fetch";
 
 import "./Signup.css";
 
@@ -21,7 +21,7 @@ const Signup = ({ onToggle }) => {
       setSignupStatus("success");
       console.log("Hello from signup handlesubmit");
     } catch (error) {
-      console.error("Signup failed:", error);
+      console.error("Signup failed:", error.message);
       setSignupStatus("error");
     }
   };
@@ -36,7 +36,12 @@ const Signup = ({ onToggle }) => {
           srcset=""
         />
         <div className="loginBox">
-          <h1>Gamer4rum</h1>
+          <img
+            className="logo-name"
+            src=".\src\assets\textlogo-bi.png"
+            alt=""
+            srcset=""
+          />
           <h3 className="loginTitle">Signup</h3>
           <form className="loginForm" onSubmit={handleSubmit}>
             <input
@@ -62,14 +67,12 @@ const Signup = ({ onToggle }) => {
               Sign Up
             </button>
             {signupStatus === "success" && (
-              <p className="signup-success-message">
+              <p className="signup-success">
                 Signup successful! You can now log in.
               </p>
             )}
             {signupStatus === "error" && (
-              <p className="signup-error-message">
-                Signup failed. Please try again.
-              </p>
+              <p className="signup-fail">Signup failed. Please try again.</p>
             )}
           </form>
           <div className="signupPrompt">
