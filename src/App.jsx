@@ -21,7 +21,7 @@ function App() {
       )}
       <Navbar user={{ /* this will be on the main page i just put it here for testing */
         username:"Username",
-        pfp:"./src/assets/tempPFP.png"
+        pfp:"./images/tempPFP.png"
       }}/>
       <Gamepage />
     </>
