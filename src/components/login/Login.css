@@ -62,9 +62,9 @@
 }
 
 .logo {
-  margin: 50px;
-  height: 70%;
-  width: 45%;
+  max-width: 480px;
+  width: 32%;
+  height: auto;
   transform: scale(0);
   opacity: 0;
   transition: transform 3s ease-in-out, opacity 3s ease-in-out;
@@ -86,12 +86,7 @@
 }
 .logo-name {
   background: transparent;
-  max-width: 480px;
-  /* margin: 50px; */
-  width: 32%;
-  height: auto;
 }
-
 
 .signupPrompt {
   background: transparent;
