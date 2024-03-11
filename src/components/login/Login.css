@@ -102,10 +102,12 @@
   }
   .loginBox{
     width:80%;
+    max-height: 430px;
+    max-width: 400px;
     padding:5px;
   }
   .logo-name{
-    width: 50%;
+    width: 70%;
     height: auto;
   }
 }

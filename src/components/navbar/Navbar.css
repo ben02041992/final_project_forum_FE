@@ -25,8 +25,13 @@
     align-items: center;
     gap:5px;
 }
-.logoName img{
+.picLogo{
     height:40px;
+}
+.textLogo{
+    aspect-ratio: 21/4;
+    max-height:40px;
+    max-width: 50vw;
 }
 .logoName h1{
     font-size: 40px;
@@ -55,7 +60,7 @@
     background-color: #22132e;
     width:120px;
     right:0;
-    top:72px;
+    top:71px;
     box-sizing: border-box;
     padding:10px;
     border: 1px double #471b6d;
@@ -88,7 +93,7 @@
     opacity: 1;
     transition: all .5s ease-in-out, opacity .5s linear;
 }
-@media only screen and (max-width: 630px){ /* if thinner than this then nav looks awful. turning it into a burger */
+@media only screen and (max-width: 660px){ /* if thinner than this then nav looks awful. turning it into a burger */
     .nomobile{
         display: none;
     }

@@ -11,8 +11,8 @@ const Navbar = (props) => {
   return (
     <div className="nav">
         <div className="logoName">
-            <img alt="Gamer4Rum logo" src="./images/Skull_and_Crossbones_bi.png"/>
-            <img alt="Gamer4Rum" src="./images/textlogo-bi.png"/>
+            <img className="picLogo" alt="Gamer4Rum logo" src="./images/Skull_and_Crossbones_bi.png"/>
+            <img className="textLogo" alt="Gamer4Rum" src="./images/textlogo-bi.png"/>
         </div>
         <div className="userSettings nomobile">
             <img alt="LoggedInPFP" src={(props.user).pfp}/>
