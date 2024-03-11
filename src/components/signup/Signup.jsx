@@ -40,7 +40,7 @@ const SignUp = ({ onToggle }) => {
             className="logo-name"
             src=".\images\textlogo-bi.png"
             alt=""
-            srcset=""
+            srcSet=""
           />
           <h3 className="loginTitle">Signup</h3>
           <form className="loginForm" onSubmit={handleSubmit}>

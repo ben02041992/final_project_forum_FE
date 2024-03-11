@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./Navbar.css";
 
 const Navbar = (props) => {
+  const [burgerVisibility, setBurgerVisibility] = useState(false);
+
+  const handleBurger = () =>{
+    setBurgerVisibility(!burgerVisibility);
+  }
+
   return (
     <div className="nav">
         <div className="logoName">
-            <img alt="Gamer4Rum logo" src="./src/assets/Skull_and_Crossbones_bi.png"/>
-            <h1>Gamer4Rum</h1>
+            <img className="picLogo" alt="Gamer4Rum logo" src="./images/Skull_and_Crossbones_bi.png"/>
+            <img className="textLogo" alt="Gamer4Rum" src="./images/textlogo-bi.png"/>
         </div>
         <div className="userSettings nomobile">
             <img alt="LoggedInPFP" src={(props.user).pfp}/>
@@ -22,8 +28,8 @@ const Navbar = (props) => {
             </div>
         </div>
         <div className="burgerMenu mobile"> {/* this is gonna have the burger */}
-                <button className="burgerIcon">☰</button>
-                <div className="userOptionsB mobile">
+                <button className="burgerIcon" onClick={handleBurger}>{burgerVisibility ? (`▼`):(`☰`)}</button>
+                <div className={burgerVisibility ? ("userOptionsB mobile visibleDiv"):("userOptionsB mobile hiddenDiv")}>
                     <ul>
                         <li>View Profile</li>
                         <li>Settings</li>
@@ -32,7 +38,7 @@ const Navbar = (props) => {
                 </div>
             </div>
     </div>
-  )
-}
+  );
+};
 
 export default Navbar
