@@ -11,3 +11,25 @@ button:hover {
   border-radius: 5px;
   background-color: #161616;
 }
+
+.main-page {
+  display: flex;
+  flex-direction: row;
+  width: 100vh;
+  padding: 10px;
+}
+
+.recent-div {
+  width: 25%;
+}
+
+@font-face {
+  font-family: "HighGame";
+  src: url("/fonts/HighGame.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+/* 
+body {
+  font-family: "HighGame", sans-serif;
+} */

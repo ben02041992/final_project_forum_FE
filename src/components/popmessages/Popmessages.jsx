@@ -15,13 +15,11 @@ const Recentmessages = () => {
         );
         const data = await response.json();
 
-        // Assuming each game object has a 'messages' property
         const gamesWithMessages = data.results.map((game) => ({
           ...game,
           messages: Math.floor(Math.random() * 1000) + 1,
         }));
 
-        // Create an array of random numbers
         const randomNumbers = gamesWithMessages.map((game) => game.messages);
 
         // Sort the games array based on the random numbers in descending order
@@ -48,7 +46,7 @@ const Recentmessages = () => {
 
   return (
     <div>
-      <h1>Popular Boards</h1>
+      <h1 className="pop">Popular Boards</h1>
       <ul>
         {games.map((game, index) => (
           <div
