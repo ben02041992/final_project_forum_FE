@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./Navbar.css";
 
 const Navbar = (props) => {
+  const [burgerVisibility, setBurgerVisibility] = useState(false);
+
+  const handleBurger = () =>{
+    setBurgerVisibility(!burgerVisibility);
+  }
+
   return (
     <div className="nav">
         <div className="logoName">
@@ -22,8 +28,8 @@ const Navbar = (props) => {
             </div>
         </div>
         <div className="burgerMenu mobile"> {/* this is gonna have the burger */}
-                <button className="burgerIcon">☰</button>
-                <div className="userOptionsB mobile">
+                <button className="burgerIcon" onClick={handleBurger}>{burgerVisibility ? (`▼`):(`☰`)}</button>
+                <div className={burgerVisibility ? ("userOptionsB mobile visibleDiv"):("userOptionsB mobile hiddenDiv")}>
                     <ul>
                         <li>View Profile</li>
                         <li>Settings</li>

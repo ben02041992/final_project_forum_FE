@@ -5,10 +5,12 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  gap:50px
 }
 
 .loginBox {
-  width: 30%;
+  width: 32%;
+  max-width: 480px;
   aspect-ratio: 6/7;
   padding: 20px;
   display: flex;
@@ -52,9 +54,7 @@
 
 .signup-but {
   background-color: #c20000;
-  border-radius: 5px;/*
-  width: 65px;
-  height: 30px;*/
+  border-radius: 5px;
   padding-left:5px;
   padding-right:5px;
   max-height: max-content;
@@ -62,9 +62,15 @@
 }
 
 .logo {
-  margin: 50px;
-  height: 70%;
-  width: auto;
+  background: transparent;
+  max-width: 480px;
+  /* margin: 50px; */
+  width: 32%;
+  height: auto;
+}
+
+.logo-name{
+  background: transparent;
 }
 
 .signupPrompt {
@@ -87,4 +93,19 @@
   background: transparent;
   margin: 50px;
   border: 1px solid rgba(194, 0, 0, 1);
+}
+
+@media only screen and (max-width:660px){
+  .wrapperLogin{
+    flex-direction: column;
+    gap:20px;
+  }
+  .loginBox{
+    width:80%;
+    padding:5px;
+  }
+  .logo-name{
+    width: 50%;
+    height: auto;
+  }
 }
