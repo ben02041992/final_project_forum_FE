@@ -14,6 +14,10 @@ function App() {
 
   return (
     <>
+      <Navbar user={{ /* this will be on the main page i just put it here for testing */
+        username:"Username",
+        pfp:"./images/tempPFP.png"
+      }}/>
       {loginSubmitToggle ? (
         <Login onToggle={toggleComponent} />
       ) : (
