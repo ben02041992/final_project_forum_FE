@@ -14,7 +14,22 @@ const Recentmessages = () => {
           `https://api.rawg.io/api/games?key=${apiKey}`
         );
         const data = await response.json();
-        setGames(data.results);
+
+        // Assuming each game object has a 'messages' property
+        const gamesWithMessages = data.results.map((game) => ({
+          ...game,
+          messages: Math.floor(Math.random() * 1000) + 1,
+        }));
+
+        // Create an array of random numbers
+        const randomNumbers = gamesWithMessages.map((game) => game.messages);
+
+        // Sort the games array based on the random numbers in descending order
+        const sortedGames = gamesWithMessages.sort(
+          (a, b) => b.messages - a.messages
+        );
+
+        setGames(sortedGames);
       } catch (error) {
         console.error("Error fetching games:", error);
       }
@@ -35,7 +50,7 @@ const Recentmessages = () => {
     <div>
       <h1>Popular Boards</h1>
       <ul>
-        {games.map((game) => (
+        {games.map((game, index) => (
           <div
             className="recent-box"
             key={game.id}
@@ -49,7 +64,8 @@ const Recentmessages = () => {
             />
             <p className="game-text">
               {" "}
-              {game.name} <small className="no-messages">X messages</small>
+              {game.name}{" "}
+              <small className="no-messages">{game.messages} messages</small>
             </p>
           </div>
         ))}

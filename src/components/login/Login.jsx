@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Login.css";
 import Gamepage from "../../components/gamepage/Gamepage";
 import { login } from "../../utils/fetch";
@@ -26,6 +26,14 @@ const Login = ({ onToggle }) => {
       setLoginStatus("error");
     }
   };
+
+  useEffect(() => {
+    const logoElement = document.querySelector(".logo");
+
+    if (logoElement) {
+      logoElement.classList.add("appear");
+    }
+  }, []); // Empty dependency array to ensure it runs only once on mount
 
   return (
     <div className="selector">
