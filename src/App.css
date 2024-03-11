@@ -11,3 +11,14 @@ button:hover {
   border-radius: 5px;
   background-color: #161616;
 }
+
+.main-page {
+  display: flex;
+  flex-direction: row;
+  width: 100vh;
+  padding: 10px;
+}
+
+.recent-div {
+  width: 25%;
+}

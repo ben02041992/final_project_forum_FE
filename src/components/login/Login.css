@@ -62,6 +62,29 @@
 }
 
 .logo {
+  margin: 50px;
+  height: 70%;
+  width: 45%;
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 3s ease-in-out, opacity 3s ease-in-out;
+}
+.logo.appear {
+  transform: scale(1);
+  opacity: 1;
+}
+
+@keyframes logoAppear {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.logo-name {
   background: transparent;
   max-width: 480px;
   /* margin: 50px; */
@@ -69,9 +92,6 @@
   height: auto;
 }
 
-.logo-name{
-  background: transparent;
-}
 
 .signupPrompt {
   background: transparent;
