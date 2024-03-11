@@ -7,10 +7,7 @@ import Navbar from "./../navbar/Navbar";
 const MainPage = (props) => {
   return (
     <div className='main-page'>
-        <Navbar user={{ /* this will be on the main page i just put it here for testing */
-        username:(props.user).username,
-        pfp:(props.user).pfp
-        }}/>
+        <Navbar user= {props.user}/>
         <div className='main-page-content'>
             <div className="recent-div">
             <Popmessages />
