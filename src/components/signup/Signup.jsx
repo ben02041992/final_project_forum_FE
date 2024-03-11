@@ -4,7 +4,7 @@ import { signup } from "../../utils/fetch";
 
 import "./Signup.css";
 
-const Signup = ({ onToggle }) => {
+const SignUp = ({ onToggle }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -41,7 +41,7 @@ const Signup = ({ onToggle }) => {
             className="logo-name"
             src=".\images\textlogo-bi.png"
             alt=""
-            srcset=""
+            srcSet=""
           />
           <h3 className="loginTitle">Signup</h3>
           <form className="loginForm" onSubmit={handleSubmit}>
@@ -90,4 +90,4 @@ const Signup = ({ onToggle }) => {
   );
 };
 
-export default Signup;
+export default SignUp;

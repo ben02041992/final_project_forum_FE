@@ -4,6 +4,8 @@ import Signup from "./components/signup/Signup";
 import "./App.css";
 import Gamepage from "./components/gamepage/Gamepage";
 import Popmessages from "./components/popmessages/Popmessages";
+import Navbar from "./components/navbar/Navbar";
+
 
 function App() {
   const [loginSubmitToggle, setloginSubmitToggle] = useState(true);
@@ -14,6 +16,10 @@ function App() {
 
   return (
     <>
+      <Navbar user={{ /* this will be on the main page i just put it here for testing */
+        username:"Username",
+        pfp:"./images/tempPFP.png"
+      }}/>
       {loginSubmitToggle ? (
         <Login onToggle={toggleComponent} />
       ) : (

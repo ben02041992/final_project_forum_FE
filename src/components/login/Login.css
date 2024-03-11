@@ -1,15 +1,17 @@
 .wrapperLogin {
-  height: 80vh;
+  height: 80%;
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: center;
+  gap:50px
 }
 
 .loginBox {
-  height: 70%;
-  width: 28%;
+  width: 32%;
+  max-width: 480px;
+  aspect-ratio: 6/7;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -30,6 +32,7 @@
   display: flex;
   flex-direction: column;
   background: transparent;
+  align-items: center;
 }
 
 .sub-but {
@@ -42,7 +45,7 @@
   border: 1px solid #0b0808;
   border-radius: 5px;
   transition: box-shadow 0.3s ease;
-  background-color: #471b6d;
+  background-color: #471b6d; /* this doesnt work */
   color: #ffffff;
   padding: 5px;
   margin: 5px;
@@ -52,8 +55,10 @@
 .signup-but {
   background-color: #c20000;
   border-radius: 5px;
-  width: 65px;
-  height: 30px;
+  padding-left:5px;
+  padding-right:5px;
+  max-height: max-content;
+  max-width: max-content;
 }
 
 .logo {
@@ -80,11 +85,22 @@
   }
 }
 .logo-name {
-  background-color: transparent;
+  background: transparent;
+  max-width: 480px;
+  /* margin: 50px; */
+  width: 32%;
+  height: auto:
 }
+
 
 .signupPrompt {
   background: transparent;
+  display:flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  gap:5px;
+  flex-wrap: wrap;
 }
 
 .signup-success {
@@ -97,4 +113,21 @@
   background: transparent;
   margin: 50px;
   border: 1px solid rgba(194, 0, 0, 1);
+}
+
+@media only screen and (max-width:660px){
+  .wrapperLogin{
+    flex-direction: column;
+    gap:20px;
+  }
+  .loginBox{
+    width:80%;
+    max-height: 430px;
+    max-width: 400px;
+    padding:5px;
+  }
+  .logo-name{
+    width: 70%;
+    height: auto;
+  }
 }
