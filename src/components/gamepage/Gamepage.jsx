@@ -83,7 +83,7 @@ const GamesList = () => {
 
   return (
     <div>
-      <h1>Games List</h1>
+      <h1 className="title">Games List</h1>
       <ul>
         {games.map((game) => (
           <div

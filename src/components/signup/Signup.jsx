@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { signup } from "../../utils/fetch";
 
@@ -27,6 +27,14 @@ const SignUp = ({ onToggle }) => {
     }
   };
 
+  useEffect(() => {
+    const logoElement = document.querySelector(".logo");
+
+    if (logoElement) {
+      logoElement.classList.add("appear");
+    }
+  }, []);
+
   return (
     <div className="selector">
       <div className="wrapperLogin">
@@ -37,12 +45,12 @@ const SignUp = ({ onToggle }) => {
           srcset=""
         />
         <div className="loginBox">
-          <img
+          {/* <img
             className="logo-name"
             src=".\images\textlogo-bi.png"
             alt=""
             srcSet=""
-          />
+          /> */}
           <h3 className="loginTitle">Signup</h3>
           <form className="loginForm" onSubmit={handleSubmit}>
             <input

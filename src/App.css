@@ -22,3 +22,14 @@ button:hover {
 .recent-div {
   width: 25%;
 }
+
+@font-face {
+  font-family: "HighGame";
+  src: url("/fonts/HighGame.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+/* 
+body {
+  font-family: "HighGame", sans-serif;
+} */
