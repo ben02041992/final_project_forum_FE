@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Messagemodal.css";
+
 import {
   fetchMessagesForBoard,
   fetchBoard,
@@ -9,6 +10,8 @@ import {
 const Messagemodal = ({ game, onClose }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+=======
+
 
   useEffect(() => {
     fetchMessagesToState();
@@ -16,6 +19,7 @@ const Messagemodal = ({ game, onClose }) => {
 
   const fetchMessagesToState = async () => {
     try {
+
       // Fetch the board
       const boardData = await fetchBoard(game.name);
       const boardId = boardData.id;
@@ -23,6 +27,7 @@ const Messagemodal = ({ game, onClose }) => {
       // Fetch messages
       const messageData = await fetchMessagesForBoard(boardId);
       setMessages(messageData.messages);
+
     } catch (error) {
       console.error("Error setting messages:", error);
     }

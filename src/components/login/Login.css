@@ -1,62 +1,176 @@
+.selector {
+  position: relative;
+}
+
 .wrapperLogin {
-  height: 80vh;
+  position: relative;
+  height: 80%;
   width: 100%;
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
-  /* border: 1px solid rgb(0, 0, 0); */
+  gap: 50px;
+}
+
+.logo {
+  margin: 50px;
+  height: 70%;
+  width: 45%;
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 3s ease-in-out, opacity 3s ease-in-out;
+}
+.logo.appear {
+  transform: scale(1);
+  opacity: 0.7;
+}
+
+@keyframes logoAppear {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+
+.loginTitle {
+  font-family: "HighGame";
+  font-size: 25px;
 }
 
 .loginBox {
-  height: 70%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20%;
+  max-width: 480px;
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   border: 1px double #471b6d;
-
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.1),
-    rgba(71, 27, 109, 0.7)
+    rgba(0, 0, 0, 0.9),
+    rgba(71, 27, 109, 1)
   );
   border-radius: 30px;
 }
 
 .loginForm {
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  background: transparent;
+  align-items: center;
+  background-color: transparent;
 }
-/* 
-.sub-but {
-  background-color: #471b6d;
-} */
 
 .loginInput {
-  width: 90%;
+  width: 95%;
   padding: 10px;
   border: 1px solid #0b0808;
   border-radius: 5px;
   transition: box-shadow 0.3s ease;
-  background-color: #471b6d;
   color: #ffffff;
   padding: 5px;
   margin: 5px;
   background: transparent;
 }
 
+.sub-but {
+  margin: 10px;
+  width: 50%;
+  background-color: gray;
+  border-radius: 5px;
+  border: 1px solid rgb(62, 62, 62, 0.5);
+  padding: 5px;
+  font-family: "HighGame";
+}
+
 .signup-but {
   background-color: #c20000;
+  border-radius: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  max-height: max-content;
+  max-width: max-content;
+  font-family: "HighGame";
 }
+
 
 .logo {
-  margin: 10px;
+  max-width: 480px;
+  width: 32%;
+  height: auto;
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 3s ease-in-out, opacity 3s ease-in-out;
+}
+.logo.appear {
+  transform: scale(1);
+  opacity: 1;
 }
 
+.logo-name {
+  background: transparent;
+  max-width: 480px;
+  width: 32%;
+  height: auto;
+}
+
+@keyframes logoAppear {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
 .signupPrompt {
   background: transparent;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.signup-success,
+.signup-fail {
+  background: transparent;
+  margin: 50px;
+  border: 1px solid;
+}
+
+.signup-success {
+  border-color: green;
+}
+
+.signup-fail {
+  border-color: rgba(194, 0, 0, 1);
+}
+
+@media only screen and (max-width: 660px) {
+  .wrapperLogin {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .loginBox {
+    width: 80%;
+    max-height: 430px;
+    max-width: 400px;
+    padding: 5px;
+  }
+  .logo-name {
+    width: 70%;
+    height: auto;
+  }
 }

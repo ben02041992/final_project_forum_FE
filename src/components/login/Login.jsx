@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Login.css";
 import Gamepage from "../../components/gamepage/Gamepage";
 import { login } from "../../utils/fetch";
+import Popmessages from "../../components/popmessages/Popmessages";
+import MainPage from "../mainPage/MainPage";
 
 const Login = ({ onToggle }) => {
   const [username, setUsername] = useState("");
@@ -15,6 +17,7 @@ const Login = ({ onToggle }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(username, password);
     console.log("Hello from login handlesubmit");
     try {
       const userData = await login(username, password);
@@ -27,14 +30,33 @@ const Login = ({ onToggle }) => {
     }
   };
 
+  useEffect(() => {
+    const logoElement = document.querySelector(".logo");
+
+    if (logoElement) {
+      logoElement.classList.add("appear");
+    }
+  }, []); // Empty dependency array to ensure it runs only once on mount
+
   return (
     <div className="selector">
       {showLoginForm ? (
         <div className="wrapperLogin">
-          <img className="logo" src=".\src\assets\image.png" alt="" srcset="" />
+          <img
+            className="logo"
+            src=".\images\Skull_and_Crossbones_bi.png"
+            alt="skull and bones logo"
+            srcset=""
+          />
           <div className="loginBox">
-            <h1 className="signupPrompt">Gamer4rum</h1>
-            <h2 className="signupPrompt">Login</h2>
+            {/* <img
+              className="logo-name"
+              src=".\images\textlogo-bi.png"
+              alt="Gamer4rum logo"
+              srcset=""
+            /> */}
+
+            <h2 className="loginTitle">Login</h2>
             <form className="loginForm" onSubmit={handleSubmit}>
               <input
                 className="loginInput"
@@ -71,7 +93,7 @@ const Login = ({ onToggle }) => {
           </div>
         </div>
       ) : (
-        <Gamepage />
+        <MainPage />
       )}
     </div>
   );

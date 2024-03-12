@@ -1,0 +1,20 @@
+.loginTitle {
+  margin: 10px;
+  background-color: transparent;
+}
+
+.signup-success {
+  background: transparent;
+  margin: 10px;
+  padding: 5px;
+  border: 1px solid rgba(31, 19, 239, 1);
+  border-radius: 5px;
+}
+
+.signup-fail {
+  background: transparent;
+  margin: 10px;
+  padding: 5px;
+  border: 1px solid rgba(194, 0, 0, 1);
+  border-radius: 5px;
+}

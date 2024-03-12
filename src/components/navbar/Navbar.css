@@ -1,3 +1,6 @@
+.nav *{
+  background: transparent;
+}
 .mobile{
     display: none;
 }
@@ -12,6 +15,8 @@
     justify-content: space-between;
     background-color: #22132e;
     color: #f2f2f2;
+    border-bottom: 1px double #471b6d;
+    margin-bottom: 20px;
 }
 .logoName{
     display: flex;
@@ -20,8 +25,13 @@
     align-items: center;
     gap:5px;
 }
-.logoName img{
+.picLogo{
     height:40px;
+}
+.textLogo{
+    aspect-ratio: 21/4;
+    max-height:40px;
+    max-width: 50vw;
 }
 .logoName h1{
     font-size: 40px;
@@ -47,12 +57,15 @@
 }
 .userOptionsB{
     position:absolute;
-    background-color: red;
+    background-color: #22132e;
     width:120px;
     right:0;
-    top:70px;
+    top:71px;
     box-sizing: border-box;
     padding:10px;
+    border: 1px double #471b6d;
+    border-top: 0px;
+    border-radius: 0px 0px 20px 20px;
 }
 .userOptionsB ul{
     display: block;
@@ -66,7 +79,21 @@
     font-size: 45px;
     line-height: 50px;
 }
-@media only screen and (max-width: 630px){ /* if thinner than this then nav looks awful. turning it into a burger */
+.hiddenDiv{
+    height: 0;
+    line-height: 0px;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .5s ease-in-out, visibility 0s .5s, opacity .5s linear;
+}
+.visibleDiv{
+    height: 93px;
+    line-height: 24px;
+    visibility: visible;
+    opacity: 1;
+    transition: all .5s ease-in-out, opacity .5s linear;
+}
+@media only screen and (max-width: 660px){ /* if thinner than this then nav looks awful. turning it into a burger */
     .nomobile{
         display: none;
     }
@@ -83,6 +110,6 @@
         padding-bottom: 2px;
     }
     .userOptionsB{
-        top:54px;
+        top:55px;
     }
 }
