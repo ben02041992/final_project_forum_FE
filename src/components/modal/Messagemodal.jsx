@@ -1,10 +1,57 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Messagemodal.css";
+import {
+  fetchMessagesForBoard,
+  fetchBoard,
+  postMessageToBoard,
+} from "../../utils/fetch";
 
 const Messagemodal = ({ game, onClose }) => {
+  const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState("");
+
+  useEffect(() => {
+    fetchMessagesToState();
+  }, []);
+
+  const fetchMessagesToState = async () => {
+    try {
+      // Fetch the board
+      const boardData = await fetchBoard(game.name);
+      const boardId = boardData.id;
+
+      // Fetch messages
+      const messageData = await fetchMessagesForBoard(boardId);
+      setMessages(messageData.messages);
+    } catch (error) {
+      console.error("Error setting messages:", error);
+    }
+  };
+
   const handleContentClick = (e) => {
-    // Prevent event propagation to the overlay, which triggers the modal closure
     e.stopPropagation();
+  };
+
+  const handleSendMessage = async () => {
+    try {
+      // Ensure there is a message
+      if (newMessage.trim() !== "") {
+        // Fetch or create the board for the selected game
+        const boardData = await fetchBoard(game.name);
+        const boardId = boardData.id;
+
+        // Send the new message to the backend
+        await postMessageToBoard(boardId, newMessage);
+
+        // Fetch updated messages
+        await fetchMessagesToState();
+
+        // Clear the input field
+        setNewMessage("");
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+    }
   };
 
   return (
@@ -24,11 +71,18 @@ const Messagemodal = ({ game, onClose }) => {
               .map((platform) => platform.platform.name)
               .join(", ")}
           </p>
-          <p>{game.publishers}</p>
+          {/* <p>Publishers: {game.publishers}</p> */}
         </div>
         <div className="modal-messages">
           <p>
-            Messages go here <br /> User: Message
+            Messages go here:
+            <br />
+            {messages.map((message) => (
+              <span key={message.id}>
+                {message.user}: {message.content}
+                <br />
+              </span>
+            ))}
           </p>
         </div>
         <div className="messenger">
@@ -36,8 +90,12 @@ const Messagemodal = ({ game, onClose }) => {
             className="input"
             type="text"
             placeholder="Write message here"
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
           />
-          <button className="send-but">Send</button>
+          <button className="send-but" onClick={handleSendMessage}>
+            Send
+          </button>
         </div>
       </div>
     </div>
