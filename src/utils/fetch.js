@@ -1,36 +1,47 @@
 export const signup = async (username, email, password) => {
-  const response = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/signup`, {
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_APP_BASE_URL}/signup`,
+      {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({
+          username: username,
+          email: email,
+          password: password,
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Signup failed with status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Signup failed:", error);
+    throw error;
+  }
+};
+
+export const login = async (username, password) => {
+  const response = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/login`, {
     method: "POST",
     mode: "cors",
     headers: {
       "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
     },
     body: JSON.stringify({
       username: username,
-      email: email,
       password: password,
     }),
   });
-
-  const data = await response.json();
-  console.log("data in fetch signup", data);
-};
-
-export const login = async (username, password) => {
-  const response = await fetch(
-    `${import.meta.env.VITE_APP_BASE_URL}/users/login`,
-    {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: username,
-        password: password,
-      }),
-    }
-  );
 
   const data = await response.json();
   console.log("data in fetch signup", data);
@@ -47,6 +58,7 @@ export const getAllUsers = async (jwt) => {
         headers: {
           "Content-Type": "application/json",
           Authorization: jwt,
+          "Access-Control-Allow-Origin": "*",
         },
       }
     );

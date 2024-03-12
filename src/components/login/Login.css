@@ -22,7 +22,7 @@
 }
 .logo.appear {
   transform: scale(1);
-  opacity: 1;
+  opacity: 0.7;
 }
 
 @keyframes logoAppear {
@@ -32,7 +32,7 @@
   }
   100% {
     transform: scale(1);
-    opacity: 1;
+    opacity: 0.7;
   }
 }
 
@@ -84,7 +84,7 @@
 
 .sub-but {
   margin: 10px;
-  width: 95%;
+  width: 50%;
   background-color: gray;
   border-radius: 5px;
   border: 1px solid rgb(62, 62, 62, 0.5);

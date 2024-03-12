@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./Login.css";
 import Gamepage from "../../components/gamepage/Gamepage";
 import { login } from "../../utils/fetch";
@@ -90,7 +90,14 @@ const Login = ({ onToggle }) => {
           </div>
         </div>
       ) : (
-        <Gamepage />
+        <div className="main-page">
+          <div className="recent-div">
+            <Popmessages />
+          </div>
+          <div className="gamepage-div">
+            <Gamepage />
+          </div>
+        </div>
       )}
     </div>
   );
