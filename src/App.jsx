@@ -4,7 +4,6 @@ import Signup from "./components/signup/Signup";
 import "./App.css";
 import MainPage from "./components/mainPage/MainPage";
 
-
 function App() {
   const [loginSubmitToggle, setloginSubmitToggle] = useState(true);
 
@@ -19,10 +18,13 @@ function App() {
       ) : (
         <Signup onToggle={toggleComponent} />
       )}
-      <MainPage user={{ /* this will be on the main page i just put it here for testing */
-        username:"Username",
-        pfp:"./images/tempPFP.png"
-        }}/>
+      <MainPage
+        user={{
+          /* this will be on the main page i just put it here for testing */
+          username: "Username",
+          pfp: "./images/tempPFP.png",
+        }}
+      />
     </>
   );
 }
