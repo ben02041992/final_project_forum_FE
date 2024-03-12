@@ -5,7 +5,7 @@ import { login } from "../../utils/fetch";
 import Popmessages from "../../components/popmessages/Popmessages";
 import MainPage from "../mainPage/MainPage";
 
-const Login = ({ onToggle }) => {
+const Login = ({ onToggle, setUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginStatus, setLoginStatus] = useState(null);
@@ -23,6 +23,7 @@ const Login = ({ onToggle }) => {
       const userData = await login(username, password);
       console.log(userData);
       setLoginStatus("success");
+      setUser(userData.user);
       setShowLoginForm(false);
     } catch (error) {
       console.error("Login failed:", error);

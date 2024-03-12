@@ -7,22 +7,24 @@ import MainPage from "./components/mainPage/MainPage";
 
 function App() {
   const [loginSubmitToggle, setloginSubmitToggle] = useState(true);
+  const [loggedInUser, setLoggedInUser] = useState({})
 
   const toggleComponent = () => {
     setloginSubmitToggle(!loginSubmitToggle);
   };
 
+  const updateLoggedInUser = (user) => {
+    setLoggedInUser(user);
+  }
+
   return (
     <>
       {loginSubmitToggle ? (
-        <Login onToggle={toggleComponent} />
+        <Login onToggle={toggleComponent} setUser={updateLoggedInUser}/>
       ) : (
         <Signup onToggle={toggleComponent} />
       )}
-      <MainPage user={{ /* this will be on the main page i just put it here for testing */
-        username:"Username",
-        pfp:"./images/tempPFP.png"
-        }}/>
+      <MainPage loggedInUser={loggedInUser}/>
     </>
   );
 }

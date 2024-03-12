@@ -4,11 +4,12 @@ import Gamepage from "./../gamepage/Gamepage";
 import Popmessages from "./../popmessages/Popmessages";
 import Navbar from "./../navbar/Navbar";
 
-const MainPage = (props) => {
+const MainPage = ({loggedInUser}) => {
+  console.log("user in MainPage:", loggedInUser);
   const username = "exampleUsername";
   return (
     <div className="main-page">
-      <Navbar user={{ username }} />
+      <Navbar user={loggedInUser} />
       <div className="main-page-content">
         <div className="recent-div">
           <Popmessages />
