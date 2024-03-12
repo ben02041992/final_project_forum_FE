@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Messagemodal.css";
+import { fetchMessagesForBoard, fetchBoard } from "../../utils/fetch";
 
 const Messagemodal = ({ game, onClose }) => {
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    fetchMessagesToState();
+  }, []);
+
+  const fetchMessagesToState = async () => {
+    try {
+      const messageData = await fetchMessagesForBoard();
+      setMessages(messageData);
+    } catch (error) {
+      console.error("Error setting messages:", error);
+    }
+  };
+
   const handleContentClick = (e) => {
-    // Prevent event propagation to the overlay, which triggers the modal closure
     e.stopPropagation();
   };
 
@@ -24,11 +39,18 @@ const Messagemodal = ({ game, onClose }) => {
               .map((platform) => platform.platform.name)
               .join(", ")}
           </p>
-          <p>{game.publishers}</p>
+          <p>Publishers: {game.publishers}</p>
         </div>
         <div className="modal-messages">
           <p>
-            Messages go here <br /> User: Message
+            Messages go here:
+            <br />
+            {messages.map((message) => (
+              <span key={message.id}>
+                {message.user}: {message.content}
+                <br />
+              </span>
+            ))}
           </p>
         </div>
         <div className="messenger">

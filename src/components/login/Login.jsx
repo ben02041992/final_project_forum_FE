@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import "./Login.css";
 import Gamepage from "../../components/gamepage/Gamepage";
 import { login } from "../../utils/fetch";
+import Popmessages from "../../components/popmessages/Popmessages";
+import MainPage from "../mainPage/MainPage";
 
 const Login = ({ onToggle }) => {
   const [username, setUsername] = useState("");
@@ -15,6 +17,7 @@ const Login = ({ onToggle }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(username, password);
     console.log("Hello from login handlesubmit");
     try {
       const userData = await login(username, password);
@@ -90,14 +93,7 @@ const Login = ({ onToggle }) => {
           </div>
         </div>
       ) : (
-        <div className="main-page">
-          <div className="recent-div">
-            <Popmessages />
-          </div>
-          <div className="gamepage-div">
-            <Gamepage />
-          </div>
-        </div>
+        <MainPage />
       )}
     </div>
   );
