@@ -83,6 +83,35 @@ export const sendMessage = async (username, content, boardId) => {
     throw error;
   }
 };
+export const createBoard = async() => {
+  try{
+    const response = await fetch(
+      `${import.meta.env.VITE_APP_BASE_URL}/boards/createBoard`,
+      {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({
+          game: game,
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Board creation failed with status: ${response.status}`);
+    }
+    console.log(response);
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error("Board creation failed:", error);
+    throw error;
+  }
+}
 
 // export const getAllUsers = async (jwt) => {
 //   try {
@@ -185,32 +214,60 @@ export const fetchAllMessages = async() =>{
 }
  
 /* PUT */
-export const createBoard = async() => {
+export const updateMessageById = async(content) => {
   try{
     const response = await fetch(
-      `${import.meta.env.VITE_APP_BASE_URL}/boards/createBoard`,
+      `${import.meta.env.VITE_APP_BASE_URL}/messages/:id`,
       {
-        method: "POST",
+        method: "PUT",
         mode: "cors",
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({
-          game: game,
+          content: content,
         }),
       }
     );
 
     if (!response.ok) {
-      throw new Error(`Board creation failed with status: ${response.status}`);
+      throw new Error(`updateMessageById failed with status: ${response.status}`);
     }
     console.log(response);
     const data = await response.json();
     console.log(data);
     return data;
   } catch (error) {
-    console.error("Board creation failed:", error);
+    console.error("updateMessageById failed:", error);
+    throw error;
+  }
+}
+
+/* DELETE */
+export const deleteMessageById = async() => {
+  try{
+    const response = await fetch(
+      `${import.meta.env.VITE_APP_BASE_URL}/messages/delete/:id`,
+      {
+        method: "DELETE",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`deleteMessageById failed with status: ${response.status}`);
+    }
+    console.log(response);
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error("deleteMessageById failed:", error);
     throw error;
   }
 }
