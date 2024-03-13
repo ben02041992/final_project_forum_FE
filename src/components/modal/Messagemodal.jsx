@@ -1,18 +1,64 @@
 import React, { useState, useEffect } from "react";
 import "./Messagemodal.css";
-import { fetchMessagesForBoard, fetchBoard } from "../../utils/fetch";
+import {
+  fetchMessagesForBoard,
+  fetchBoard,
+  postMessageToBoard,
+} from "../../utils/fetch";
 
 const Messagemodal = ({ game, onClose }) => {
-  const [messages, setMessages] = useState([]);
+
+  const [messages, setMessages] = useState([
+    {
+      id: 2,
+      username: "Greg",
+      content: "so this is gamer4rum? i love the look",
+      createdAt: "2024-03-12T18:55:17.000Z",
+      updatedAt: "2024-03-12T19:44:43.000Z",
+      boardId: 1,
+    },
+    {
+      id: 3,
+      username: "Greg",
+      content: "yo whattup",
+      createdAt: "2024-03-12T19:46:40.000Z",
+      updatedAt: "2024-03-12T19:46:40.000Z",
+      boardId: 1,
+    },
+    {
+      id: 4,
+      username: "Greg",
+      content: "its me greg",
+      createdAt: "2024-03-12T19:46:46.000Z",
+      updatedAt: "2024-03-12T19:46:46.000Z",
+      boardId: 1,
+    },
+    {
+      id: 5,
+      username: "Greg",
+      content: "hows it going",
+      createdAt: "2024-03-12T19:46:52.000Z",
+      updatedAt: "2024-03-12T19:46:52.000Z",
+      boardId: 1,
+    },
+  ]);
+
+
+  const [newMessage, setNewMessage] = useState("");
 
   useEffect(() => {
     fetchMessagesToState();
-  }, []);
+  }, [game]);
 
   const fetchMessagesToState = async () => {
     try {
-      const messageData = await fetchMessagesForBoard();
-      setMessages(messageData);
+
+      const boardData = await fetchBoard(game.name);
+      const boardId = boardData.id;
+
+
+      const messageData = await fetchMessagesForBoard(boardId);
+      setMessages(messageData.messages);
     } catch (error) {
       console.error("Error setting messages:", error);
     }
@@ -20,6 +66,23 @@ const Messagemodal = ({ game, onClose }) => {
 
   const handleContentClick = (e) => {
     e.stopPropagation();
+  };
+
+  const handleSendMessage = async () => {
+    try {
+
+      if (newMessage.trim() !== "") {
+        const boardData = await fetchBoard(game.name);
+        const boardId = boardData.id;
+
+        await postMessageToBoard(boardId, newMessage);
+        await fetchMessagesToState();
+
+        setNewMessage("");
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+    }
   };
 
   return (
@@ -39,27 +102,29 @@ const Messagemodal = ({ game, onClose }) => {
               .map((platform) => platform.platform.name)
               .join(", ")}
           </p>
-          <p>Publishers: {game.publishers}</p>
+
         </div>
         <div className="modal-messages">
-          <p>
-            Messages go here:
-            <br />
+          {/* <h3>Messages go here:</h3> */}
+          <ul>
             {messages.map((message) => (
-              <span key={message.id}>
-                {message.user}: {message.content}
-                <br />
-              </span>
+              <li key={message.id}>
+                <strong>{message.username}:</strong> {message.content}
+              </li>
             ))}
-          </p>
+          </ul>
         </div>
         <div className="messenger">
           <input
             className="input"
             type="text"
             placeholder="Write message here"
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
           />
-          <button className="send-but">Send</button>
+          <button className="send-but" onClick={handleSendMessage}>
+            Send
+          </button>
         </div>
       </div>
     </div>
@@ -67,3 +132,4 @@ const Messagemodal = ({ game, onClose }) => {
 };
 
 export default Messagemodal;
+
