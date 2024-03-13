@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Messagemodal.css";
 import {
   fetchMessagesForBoard,
-  fetchBoard,
+  fetchBoardByName,
   postMessageToBoard,
   createBoard,
 } from "../../utils/fetch";
@@ -54,7 +54,7 @@ const Messagemodal = ({ game, onClose }) => {
   const fetchMessagesToState = async () => {
     try {
 
-      let boardData = await fetchBoard(game.name);
+      let boardData = await fetchBoardByName(game.name);
       if (!boardData) {
         boardData = await createBoard(game.name);
       }

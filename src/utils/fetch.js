@@ -188,6 +188,30 @@ export const fetchBoard = async (boardId) => {
   }
 };
 
+export const fetchBoardByName = async(game) => {
+  try{
+    const response = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/boards/board/game/${game}`, {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.board;
+  } catch (error) {
+    console.error("Error in fetchBoardByName:", error.message);
+    console.log("Response content:", await response.text());
+    throw error;
+  }
+}
+
 export const postMessageToBoard = async (boardId, messageContent) => {
   try {
     const response = await fetch(`boards/${boardId}/messages`, {
@@ -213,9 +237,6 @@ export const postMessageToBoard = async (boardId, messageContent) => {
     throw error;
   }
 };
-
-
-
 
 export const fetchAllMessages = async() =>{
   try {
