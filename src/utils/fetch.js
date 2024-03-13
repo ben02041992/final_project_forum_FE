@@ -215,32 +215,7 @@ export const postMessageToBoard = async (boardId, messageContent) => {
 };
 
 
-export const createBoard = async (gameName) => {
-  try {
-    const response = await fetch("/boards/createBoard", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        game: gameName,
-      }),
-    });
 
-    if (!response.ok) {
-      throw new Error(`Error! Status: ${response.status}`);
-    }
-
-
-    const data = await response.json();
-    return data.board;
-  } catch (error) {
-    console.error("Error in createBoard:", error.message);
-    console.log("Response content:", await response.text());
-    throw error;
-  }
-};
 
 export const fetchAllMessages = async() =>{
   try {
