@@ -1,3 +1,4 @@
+/* POST */
 export const signup = async (username, email, password) => {
   try {
     const response = await fetch(
@@ -51,6 +52,38 @@ export const login = async (username, password) => {
   return data;
 };
 
+export const sendMessage = async (username, content, boardId) => {
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_APP_BASE_URL}/messages/newMessage`,
+      {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({
+          username: username,
+          content: content,
+          boardId: boardId,
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`sendMessage failed with status: ${response.status}`);
+    }
+    console.log(response);
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error("sendMessage failed:", error);
+    throw error;
+  }
+};
+
 // export const getAllUsers = async (jwt) => {
 //   try {
 //     const response = await fetch(
@@ -78,9 +111,10 @@ export const login = async (username, password) => {
 //   }
 // };
 
+/* GET */
 export const fetchMessagesForBoard = async (boardId) => {
   try {
-    const response = await fetch(`ENDPOINT/${boardId}/messages`, {
+    const response = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/messages/board/${boardId}`, {
       method: "GET",
       mode: "cors",
       headers: {
@@ -104,7 +138,7 @@ export const fetchMessagesForBoard = async (boardId) => {
 
 export const fetchBoard = async (boardId) => {
   try {
-    const response = await fetch(`ENDPOINT/${boardId}`, {
+    const response = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/boards/${boardId}`, {
       method: "GET",
       mode: "cors",
       headers: {
@@ -125,3 +159,58 @@ export const fetchBoard = async (boardId) => {
     throw error;
   }
 };
+
+export const fetchAllMessages = async() =>{
+  try {
+    const response = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/messages/`, {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: jwt,
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+
+  } catch (error) {
+    console.error("Error in fetchAllMessages:", error.message);
+    throw error;
+  }
+}
+ 
+/* PUT */
+export const createBoard = async() => {
+  try{
+    const response = await fetch(
+      `${import.meta.env.VITE_APP_BASE_URL}/boards/createBoard`,
+      {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({
+          game: game,
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Board creation failed with status: ${response.status}`);
+    }
+    console.log(response);
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error("Board creation failed:", error);
+    throw error;
+  }
+}
