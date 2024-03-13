@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./Messagemodal.css";
-import { fetchMessagesForBoard, fetchBoard } from "../../utils/fetch";
+import {
+  fetchMessagesForBoard,
+  fetchBoard,
+  postMessageToBoard,
+} from "../../utils/fetch";
 
 const Messagemodal = ({ game, onClose }) => {
   const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState("");
 
   useEffect(() => {
     fetchMessagesToState();
@@ -11,8 +16,13 @@ const Messagemodal = ({ game, onClose }) => {
 
   const fetchMessagesToState = async () => {
     try {
-      const messageData = await fetchMessagesForBoard();
-      setMessages(messageData);
+      // Fetch the board
+      const boardData = await fetchBoard(game.name);
+      const boardId = boardData.id;
+
+      // Fetch messages
+      const messageData = await fetchMessagesForBoard(boardId);
+      setMessages(messageData.messages);
     } catch (error) {
       console.error("Error setting messages:", error);
     }
@@ -20,6 +30,28 @@ const Messagemodal = ({ game, onClose }) => {
 
   const handleContentClick = (e) => {
     e.stopPropagation();
+  };
+
+  const handleSendMessage = async () => {
+    try {
+      // Ensure there is a message
+      if (newMessage.trim() !== "") {
+        // Fetch or create the board for the selected game
+        const boardData = await fetchBoard(game.name);
+        const boardId = boardData.id;
+
+        // Send the new message to the backend
+        await postMessageToBoard(boardId, newMessage);
+
+        // Fetch updated messages
+        await fetchMessagesToState();
+
+        // Clear the input field
+        setNewMessage("");
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+    }
   };
 
   return (
@@ -39,7 +71,7 @@ const Messagemodal = ({ game, onClose }) => {
               .map((platform) => platform.platform.name)
               .join(", ")}
           </p>
-          <p>Publishers: {game.publishers}</p>
+          {/* <p>Publishers: {game.publishers}</p> */}
         </div>
         <div className="modal-messages">
           <p>
@@ -58,8 +90,12 @@ const Messagemodal = ({ game, onClose }) => {
             className="input"
             type="text"
             placeholder="Write message here"
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
           />
-          <button className="send-but">Send</button>
+          <button className="send-but" onClick={handleSendMessage}>
+            Send
+          </button>
         </div>
       </div>
     </div>
@@ -67,3 +103,4 @@ const Messagemodal = ({ game, onClose }) => {
 };
 
 export default Messagemodal;
+
