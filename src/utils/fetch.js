@@ -252,7 +252,10 @@ export const fetchAllMessages = async() =>{
         Authorization: jwt,
         "Access-Control-Allow-Origin": "*",
       },
-
+});
+     if (!response.ok) {
+      throw new Error(`Error! Status: ${response.status}`);
+    }
     const data = await response.json();
     return data;
 
