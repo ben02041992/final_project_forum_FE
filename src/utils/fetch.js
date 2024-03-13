@@ -214,6 +214,9 @@ export const postMessageToBoard = async (boardId, messageContent) => {
   }
 };
 
+
+
+
 export const fetchAllMessages = async() =>{
   try {
     const response = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/messages/`, {
@@ -224,9 +227,8 @@ export const fetchAllMessages = async() =>{
         Authorization: jwt,
         "Access-Control-Allow-Origin": "*",
       },
-    });
-
-    if (!response.ok) {
+});
+     if (!response.ok) {
       throw new Error(`Error! Status: ${response.status}`);
     }
     const data = await response.json();
@@ -296,3 +298,4 @@ export const deleteMessageById = async() => {
     throw error;
   }
 }
+
