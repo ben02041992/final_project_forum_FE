@@ -8,6 +8,7 @@ import {
 } from "../../utils/fetch";
 
 const Messagemodal = ({ game, onClose }) => {
+
   const [messages, setMessages] = useState([
     // {
     //   id: 2,
@@ -43,6 +44,7 @@ const Messagemodal = ({ game, onClose }) => {
     // },
   ]);
 
+
   const [newMessage, setNewMessage] = useState("");
 
   useEffect(() => {
@@ -51,11 +53,14 @@ const Messagemodal = ({ game, onClose }) => {
 
   const fetchMessagesToState = async () => {
     try {
+
       let boardData = await fetchBoard(game.name);
       if (!boardData) {
         boardData = await createBoard(game.name);
       }
+
       const boardId = boardData.id;
+
 
       const messageData = await fetchMessagesForBoard(boardId);
       setMessages(messageData.messages);
@@ -70,6 +75,7 @@ const Messagemodal = ({ game, onClose }) => {
 
   const handleSendMessage = async () => {
     try {
+
       if (newMessage.trim() !== "") {
         let boardData = await fetchBoard(game.name);
         if (!boardData) {
@@ -79,6 +85,7 @@ const Messagemodal = ({ game, onClose }) => {
 
         await postMessageToBoard(boardId, newMessage);
         await fetchMessagesToState();
+
         setNewMessage("");
       }
     } catch (error) {
@@ -103,6 +110,7 @@ const Messagemodal = ({ game, onClose }) => {
               .map((platform) => platform.platform.name)
               .join(", ")}
           </p>
+
         </div>
         <div className="modal-messages">
           {/* <h3>Messages go here:</h3> */}
@@ -132,3 +140,4 @@ const Messagemodal = ({ game, onClose }) => {
 };
 
 export default Messagemodal;
+
