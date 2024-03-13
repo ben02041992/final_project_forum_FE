@@ -83,7 +83,7 @@ export const sendMessage = async (username, content, boardId) => {
     throw error;
   }
 };
-export const createBoard = async() => {
+export const createBoard = async(game) => {
   try{
     const response = await fetch(
       `${import.meta.env.VITE_APP_BASE_URL}/boards/createBoard`,
@@ -166,7 +166,7 @@ export const fetchMessagesForBoard = async (boardId) => {
 
 export const fetchBoard = async (boardId) => {
   try {
-    const response = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/boards/${boardId}`, {
+    const response = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/boards/board/${boardId}`, {
       method: "GET",
       mode: "cors",
       headers: {
@@ -241,10 +241,10 @@ export const fetchAllMessages = async() =>{
 }
  
 /* PUT */
-export const updateMessageById = async(content) => {
+export const updateMessageById = async(messageId, content) => {
   try{
     const response = await fetch(
-      `${import.meta.env.VITE_APP_BASE_URL}/messages/:id`,
+      `${import.meta.env.VITE_APP_BASE_URL}/messages/${messageId}`,
       {
         method: "PUT",
         mode: "cors",
@@ -272,10 +272,10 @@ export const updateMessageById = async(content) => {
 }
 
 /* DELETE */
-export const deleteMessageById = async() => {
+export const deleteMessageById = async(messageId) => {
   try{
     const response = await fetch(
-      `${import.meta.env.VITE_APP_BASE_URL}/messages/delete/:id`,
+      `${import.meta.env.VITE_APP_BASE_URL}/messages/delete/${messageId}`,
       {
         method: "DELETE",
         mode: "cors",
