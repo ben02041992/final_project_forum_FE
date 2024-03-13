@@ -154,10 +154,7 @@ export const postMessageToBoard = async (boardId, messageContent) => {
     console.error("Error in postMessageToBoard:", error.message);
     const data = await response.json();
     return data.messages;
-  } catch (error) {
-    console.error("Error in fetchMessagesForBoard:", error.message);
-    throw error;
-  }
+  } 
 };
 
 export const fetchBoard = async (boardId) => {
