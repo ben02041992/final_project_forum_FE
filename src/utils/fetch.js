@@ -80,15 +80,11 @@ export const login = async (username, password) => {
 
 export const fetchMessagesForBoard = async (boardId) => {
   try {
-
     const response = await fetch(`boards/${boardId}/messages`, {
-
       method: "GET",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
-
-
         "Access-Control-Allow-Origin": "*",
       },
     });
@@ -96,7 +92,6 @@ export const fetchMessagesForBoard = async (boardId) => {
     if (!response.ok) {
       throw new Error(`Error! Status: ${response.status}`);
     }
-
 
     const data = await response.json();
     return data.messages;
@@ -152,31 +147,7 @@ export const postMessageToBoard = async (boardId, messageContent) => {
     return data;
   } catch (error) {
     console.error("Error in postMessageToBoard:", error.message);
-    const data = await response.json();
-    return data.messages;
-  } 
-};
-
-export const fetchBoard = async (boardId) => {
-  try {
-    const response = await fetch(`ENDPOINT/${boardId}`, {
-      method: "GET",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: jwt,
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error! Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data.board;
-  } catch (error) {
-    console.error("Error in fetchBoard:", error.message);
     throw error;
   }
 };
+
