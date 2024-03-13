@@ -125,7 +125,7 @@ export const fetchBoard = async (boardId) => {
   }
 };
 
-export const postMessageToBoard = async (boardId, messageContent, jwt) => {
+export const postMessageToBoard = async (boardId, messageContent) => {
   try {
     const response = await fetch(`boards/${boardId}/messages`, {
       method: "POST",
@@ -150,3 +150,4 @@ export const postMessageToBoard = async (boardId, messageContent, jwt) => {
     throw error;
   }
 };
+
