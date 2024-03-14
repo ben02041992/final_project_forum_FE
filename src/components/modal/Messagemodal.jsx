@@ -7,11 +7,16 @@ const Messagemodal = ({ game, onClose }) => {
     e.stopPropagation();
   };
 
+  const handleRefresh = () => {
+    fetchMessagesToState();
+  };
+
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-card" onClick={handleContentClick}>
         <div className="modal-header">
           <h2>{game.name}</h2>
+          <button onClick={handleRefresh}>Refresh</button>
           <button onClick={onClose}>Close</button>
         </div>
         <div className="modal-content">
