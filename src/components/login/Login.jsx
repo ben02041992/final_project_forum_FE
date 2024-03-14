@@ -21,7 +21,10 @@ const Login = ({ onToggle }) => {
     console.log("Hello from login handlesubmit");
     try {
       const userData = await login(username, password);
-      console.log("login userData:",userData); /*! STORE ME IN APP.JSX STATE VALUE ! PASS ME TO MODAL AND NAVBAR !*/
+      console.log(
+        "login userData:",
+        userData
+      ); /*! STORE ME IN APP.JSX STATE VALUE ! PASS ME TO MODAL AND NAVBAR !*/
       setLoginStatus("success");
       setShowLoginForm(false);
     } catch (error) {
@@ -93,7 +96,7 @@ const Login = ({ onToggle }) => {
           </div>
         </div>
       ) : (
-        <MainPage />
+        <MainPage username={username} />
       )}
     </div>
   );
