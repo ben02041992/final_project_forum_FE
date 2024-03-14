@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Gamepage.css";
 import Messagemodal from "../modal/Messagemodal";
 
-const GamesList = () => {
+const GamesList = ({ username }) => {
   const [games, setGames] = useState([]);
   const [hoveredGame, setHoveredGame] = useState(null);
   const [screenshots, setScreenshots] = useState([]);
@@ -109,7 +109,11 @@ const GamesList = () => {
       </ul>
 
       {selectedGame && (
-        <Messagemodal game={selectedGame} onClose={closeModal} />
+        <Messagemodal
+          game={selectedGame}
+          onClose={closeModal}
+          username={username}
+        />
       )}
     </div>
   );

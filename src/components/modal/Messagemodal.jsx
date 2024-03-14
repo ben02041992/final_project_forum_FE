@@ -7,10 +7,8 @@ import {
   createBoard,
 } from "../../utils/fetch";
 
-const Messagemodal = ({ game, onClose }) => {
-
+const Messagemodal = ({ game, onClose, username }) => {
   const [messages, setMessages] = useState([{}]);
-
 
   const [newMessage, setNewMessage] = useState("");
 
@@ -25,18 +23,17 @@ const Messagemodal = ({ game, onClose }) => {
       const messageData = await fetchMessagesForBoard(boardId);
       setMessages(messageData);
     } catch (error) {
-      if(error.message.includes("Status: 404")){ //board has not been found
-        try{
+      if (error.message.includes("Status: 404")) {
+        //board has not been found
+        try {
           let boardData = await createBoard(game.name);
-          const boardId=boardData.board.id;
+          const boardId = boardData.board.id;
           const messageData = await fetchMessagesForBoard(boardId);
           setMessages(messageData);
-        }
-        catch(createError){
+        } catch (createError) {
           console.error("Error creating board: ", createError);
         }
-      }
-      else{
+      } else {
         console.error("Error setting messages: ", error);
       }
     }
@@ -46,37 +43,34 @@ const Messagemodal = ({ game, onClose }) => {
     e.stopPropagation();
   };
 
-
   const handleRefresh = () => {
     fetchMessagesToState();
-      };
+  };
 
   const handleSendMessage = async () => {
     try {
       let boardData = await fetchBoardByName(game.name);
       const boardId = boardData.id;
-      await postMessageToBoard("user", boardId, newMessage); //"user" should be replaced with logged in user username. stored in state
+      await postMessageToBoard(username, boardId, newMessage); //"user" should be replaced with logged in user username. stored in state
       await fetchMessagesToState();
       setNewMessage("");
     } catch (error) {
-      if(error.message.includes("Status: 404")){ //board has not been found
-        try{
+      if (error.message.includes("Status: 404")) {
+        //board has not been found
+        try {
           let boardData = await createBoard(game.name);
-          const boardId=boardData.board.id;
+          const boardId = boardData.board.id;
           await postMessageToBoard(boardId, newMessage);
           await fetchMessagesToState();
           setNewMessage("");
-        }
-        catch(createError){
+        } catch (createError) {
           console.error("Error creating board: ", createError);
         }
-      }
-      else{
+      } else {
         console.error("Error sending messages: ", error);
       }
     }
-};
-
+  };
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -96,7 +90,6 @@ const Messagemodal = ({ game, onClose }) => {
               .map((platform) => platform.platform.name)
               .join(", ")}
           </p>
-
         </div>
         <div className="modal-messages">
           {/* <h3>Messages go here:</h3> */}
@@ -126,4 +119,3 @@ const Messagemodal = ({ game, onClose }) => {
 };
 
 export default Messagemodal;
-

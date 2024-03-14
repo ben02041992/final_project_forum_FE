@@ -15,7 +15,7 @@ const MainPage = (props) => {
           <Popmessages />
         </div>
         <div className="gamepage-div">
-          <Gamepage />
+          <Gamepage username={username} />
         </div>
       </div>
     </div>
