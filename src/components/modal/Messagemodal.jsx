@@ -9,40 +9,7 @@ import {
 
 const Messagemodal = ({ game, onClose }) => {
 
-  const [messages, setMessages] = useState([
-    // {
-    //   id: 2,
-    //   username: "Greg",
-    //   content: "so this is gamer4rum? i love the look",
-    //   createdAt: "2024-03-12T18:55:17.000Z",
-    //   updatedAt: "2024-03-12T19:44:43.000Z",
-    //   boardId: 1,
-    // },
-    // {
-    //   id: 3,
-    //   username: "Greg",
-    //   content: "yo whattup",
-    //   createdAt: "2024-03-12T19:46:40.000Z",
-    //   updatedAt: "2024-03-12T19:46:40.000Z",
-    //   boardId: 1,
-    // },
-    // {
-    //   id: 4,
-    //   username: "Greg",
-    //   content: "its me greg",
-    //   createdAt: "2024-03-12T19:46:46.000Z",
-    //   updatedAt: "2024-03-12T19:46:46.000Z",
-    //   boardId: 1,
-    // },
-    // {
-    //   id: 5,
-    //   username: "Greg",
-    //   content: "hows it going",
-    //   createdAt: "2024-03-12T19:46:52.000Z",
-    //   updatedAt: "2024-03-12T19:46:52.000Z",
-    //   boardId: 1,
-    // },
-  ]);
+  const [messages, setMessages] = useState([{}]);
 
 
   const [newMessage, setNewMessage] = useState("");
@@ -53,19 +20,25 @@ const Messagemodal = ({ game, onClose }) => {
 
   const fetchMessagesToState = async () => {
     try {
-
       let boardData = await fetchBoardByName(game.name);
-      if (!boardData) {
-        boardData = await createBoard(game.name);
-      }
-
       const boardId = boardData.id;
-
-
       const messageData = await fetchMessagesForBoard(boardId);
-      setMessages(messageData.messages);
+      setMessages(messageData);
     } catch (error) {
-      console.error("Error setting messages:", error);
+      if(error.message.includes("Status: 404")){ //board has not been found
+        try{
+          let boardData = await createBoard(game.name);
+          const boardId=boardData.board.id;
+          const messageData = await fetchMessagesForBoard(boardId);
+          setMessages(messageData);
+        }
+        catch(createError){
+          console.error("Error creating board: ", createError);
+        }
+      }
+      else{
+        console.error("Error setting messages: ", error);
+      }
     }
   };
 
@@ -75,21 +48,27 @@ const Messagemodal = ({ game, onClose }) => {
 
   const handleSendMessage = async () => {
     try {
-
-      if (newMessage.trim() !== "") {
-        let boardData = await fetchBoard(game.name);
-        if (!boardData) {
-          boardData = await createBoard(game.name);
-        }
-        const boardId = boardData.id;
-
-        await postMessageToBoard(boardId, newMessage);
-        await fetchMessagesToState();
-
-        setNewMessage("");
-      }
+      let boardData = await fetchBoardByName(game.name);
+      const boardId = boardData.id;
+      await postMessageToBoard("user", boardId, newMessage); //"user" should be replaced with logged in user username. stored in state
+      await fetchMessagesToState();
+      setNewMessage("");
     } catch (error) {
-      console.error("Error sending message:", error);
+      if(error.message.includes("Status: 404")){ //board has not been found
+        try{
+          let boardData = await createBoard(game.name);
+          const boardId=boardData.board.id;
+          await postMessageToBoard(boardId, newMessage);
+          await fetchMessagesToState();
+          setNewMessage("");
+        }
+        catch(createError){
+          console.error("Error creating board: ", createError);
+        }
+      }
+      else{
+        console.error("Error sending messages: ", error);
+      }
     }
   };
 

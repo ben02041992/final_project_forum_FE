@@ -207,14 +207,13 @@ export const fetchBoardByName = async(game) => {
     return data.board;
   } catch (error) {
     console.error("Error in fetchBoardByName:", error.message);
-    console.log("Response content:", await response.text());
     throw error;
   }
 }
 
-export const postMessageToBoard = async (boardId, messageContent) => {
+export const postMessageToBoard = async (username, boardId, messageContent) => {
   try {
-    const response = await fetch(`boards/${boardId}/messages`, {
+    const response = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/messages/newMessage`, {
       method: "POST",
       mode: "cors",
       headers: {
@@ -222,6 +221,8 @@ export const postMessageToBoard = async (boardId, messageContent) => {
         "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
+        username: username,
+        boardId: boardId,
         content: messageContent,
       }),
     });
