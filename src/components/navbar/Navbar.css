@@ -48,12 +48,16 @@
 .userSettings a{
     font-weight: bold;
 }
-.userOptions p{
-    font-size: 10px;
-}
 .userOptions ul{
     display: flex;
     gap: 20px;
+}
+.userOptions h2{
+    font-weight: bold;
+}
+.userOptions li{
+    font-size: 15px;
+    color: #c137b1;
 }
 .userOptionsB{
     position:absolute;

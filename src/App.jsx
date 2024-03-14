@@ -14,6 +14,7 @@ function App() {
 
   const updateLoggedInUser = (user) => {
     setLoggedInUser(user);
+    console.log("user updates to: ", loggedInUser);
   }
 
   return (
@@ -23,7 +24,6 @@ function App() {
       ) : (
         <Signup onToggle={toggleComponent} />
       )}
-      <MainPage loggedInUser={loggedInUser}/>
     </>
   );
 }

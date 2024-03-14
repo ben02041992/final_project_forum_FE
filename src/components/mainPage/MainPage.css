@@ -1,9 +1,9 @@
 .main-page-content {
     display: flex;
     flex-direction: row;
-    width: 100vh;
+    width: 100%;
     padding: 10px;
 }
 .recent-div {
-  width: 25%;
+  width: 35%;
 }
