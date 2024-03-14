@@ -2,7 +2,7 @@ import { React, useEffect, useState } from "react";
 import "./Popmessages.css";
 import Messagemodal from "../modal/Messagemodal";
 
-const Recentmessages = () => {
+const Recentmessages = ({ username }) => {
   const [games, setGames] = useState([]);
   const [selectedGame, setSelectedGame] = useState(null);
 
@@ -70,7 +70,11 @@ const Recentmessages = () => {
       </ul>
 
       {selectedGame && (
-        <Messagemodal game={selectedGame} onClose={closeRecentMessages} />
+        <Messagemodal
+          game={selectedGame}
+          onClose={closeRecentMessages}
+          username={username}
+        />
       )}
     </div>
   );
