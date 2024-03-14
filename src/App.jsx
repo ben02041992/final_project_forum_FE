@@ -4,7 +4,6 @@ import Signup from "./components/signup/Signup";
 import "./App.css";
 import MainPage from "./components/mainPage/MainPage";
 
-
 function App() {
   const [loginSubmitToggle, setloginSubmitToggle] = useState(true);
   const [loggedInUser, setLoggedInUser] = useState({})

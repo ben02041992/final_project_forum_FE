@@ -21,7 +21,7 @@ const Login = ({ onToggle, setUser }) => {
     console.log("Hello from login handlesubmit");
     try {
       const userData = await login(username, password);
-      console.log(userData);
+      console.log("login userData:",userData); /*! STORE ME IN APP.JSX STATE VALUE ! PASS ME TO MODAL AND NAVBAR !*/
       setLoginStatus("success");
       setUser(userData.user);
       setShowLoginForm(false);
