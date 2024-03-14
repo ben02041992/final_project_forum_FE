@@ -46,6 +46,11 @@ const Messagemodal = ({ game, onClose }) => {
     e.stopPropagation();
   };
 
+
+  const handleRefresh = () => {
+    fetchMessagesToState();
+      };
+
   const handleSendMessage = async () => {
     try {
       let boardData = await fetchBoardByName(game.name);
@@ -70,13 +75,15 @@ const Messagemodal = ({ game, onClose }) => {
         console.error("Error sending messages: ", error);
       }
     }
-  };
+};
+
 
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-card" onClick={handleContentClick}>
         <div className="modal-header">
           <h2>{game.name}</h2>
+          <button onClick={handleRefresh}>Refresh</button>
           <button onClick={onClose}>Close</button>
         </div>
         <div className="modal-content">
