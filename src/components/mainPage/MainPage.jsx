@@ -11,7 +11,7 @@ const MainPage = ({ username, onSignOut }) => {
       <Navbar username={username} pfp={pfp} onSignOut={onSignOut} />
       <div className="main-page-content">
         <div className="recent-div">
-          <Popmessages />
+          <Popmessages username={username} />
         </div>
         <div className="gamepage-div">
           <Gamepage username={username} />
