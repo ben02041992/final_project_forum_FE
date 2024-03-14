@@ -18,13 +18,6 @@ function App() {
       ) : (
         <Signup onToggle={toggleComponent} />
       )}
-      <MainPage
-        user={{
-          /* this will be on the main page i just put it here for testing */
-          username: "Username",
-          pfp: "./images/tempPFP.png",
-        }}
-      />
     </>
   );
 }

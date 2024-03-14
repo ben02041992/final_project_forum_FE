@@ -5,10 +5,11 @@ import Popmessages from "./../popmessages/Popmessages";
 import Navbar from "./../navbar/Navbar";
 
 const MainPage = (props) => {
-  const username = "exampleUsername";
+  const { username } = props;
+  const pfp = "./images/Skull_and_Crossbones_bi.png";
   return (
     <div className="main-page">
-      <Navbar user={{ username }} />
+      <Navbar username={username} pfp={pfp} />
       <div className="main-page-content">
         <div className="recent-div">
           <Popmessages />

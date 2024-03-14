@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Navbar.css";
 
-const Navbar = (props) => {
+const Navbar = ({ username, pfp }) => {
   const [burgerVisibility, setBurgerVisibility] = useState(false);
 
   const handleBurger = () => {
@@ -23,10 +23,10 @@ const Navbar = (props) => {
         />
       </div>
       <div className="userSettings nomobile">
-        <img alt="LoggedInPFP" src={props.user.pfp} />
+        <img alt="LoggedInPFP" src={pfp} />
         <div className="userInfo">
           <h2>
-            Logged in as <a className="username">{props.user.username}</a>
+            Logged in as <a className="username">{username}</a>
           </h2>
           <div className="userOptions">
             <ul>
