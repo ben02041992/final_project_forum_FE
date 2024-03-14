@@ -2,7 +2,7 @@ import { useState } from "react";
 import Login from "./components/login/Login";
 import Signup from "./components/signup/Signup";
 import "./App.css";
-import Gamepage from "./components/gamepage/Gamepage";
+import MainPage from "./components/mainPage/MainPage";
 
 function App() {
   const [loginSubmitToggle, setloginSubmitToggle] = useState(true);
@@ -18,7 +18,13 @@ function App() {
       ) : (
         <Signup onToggle={toggleComponent} />
       )}
-      <Gamepage />
+      <MainPage
+        user={{
+          /* this will be on the main page i just put it here for testing */
+          username: "Username",
+          pfp: "./images/tempPFP.png",
+        }}
+      />
     </>
   );
 }

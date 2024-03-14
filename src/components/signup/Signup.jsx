@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { signup } from "../../utils/fetch";
 
 import "./Signup.css";
 
-const Signup = ({ onToggle }) => {
+const SignUp = ({ onToggle }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,6 +17,7 @@ const Signup = ({ onToggle }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log("works");
       await signup(username, email, password);
       setSignupStatus("success");
       console.log("Hello from signup handlesubmit");
@@ -25,6 +26,14 @@ const Signup = ({ onToggle }) => {
       setSignupStatus("error");
     }
   };
+
+  useEffect(() => {
+    const logoElement = document.querySelector(".logo");
+
+    if (logoElement) {
+      logoElement.classList.add("appear");
+    }
+  }, []);
 
   return (
     <div className="selector">
@@ -36,12 +45,12 @@ const Signup = ({ onToggle }) => {
           srcset=""
         />
         <div className="loginBox">
-          <img
+          {/* <img
             className="logo-name"
             src=".\images\textlogo-bi.png"
             alt=""
-            srcset=""
-          />
+            srcSet=""
+          /> */}
           <h3 className="loginTitle">Signup</h3>
           <form className="loginForm" onSubmit={handleSubmit}>
             <input
@@ -89,4 +98,4 @@ const Signup = ({ onToggle }) => {
   );
 };
 
-export default Signup;
+export default SignUp;

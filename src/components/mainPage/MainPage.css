@@ -1,0 +1,9 @@
+.main-page-content {
+    display: flex;
+    flex-direction: row;
+    width: 100vh;
+    padding: 10px;
+}
+.recent-div {
+  width: 25%;
+}
