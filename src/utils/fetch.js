@@ -188,9 +188,32 @@ export const fetchBoard = async (boardId) => {
   }
 };
 
-export const postMessageToBoard = async (boardId, messageContent) => {
+export const fetchBoardByName = async(game) => {
+  try{
+    const response = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/boards/board/game/${game}`, {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.board;
+  } catch (error) {
+    console.error("Error in fetchBoardByName:", error.message);
+    throw error;
+  }
+}
+
+export const postMessageToBoard = async (username, boardId, messageContent) => {
   try {
-    const response = await fetch(`boards/${boardId}/messages`, {
+    const response = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/messages/newMessage`, {
       method: "POST",
       mode: "cors",
       headers: {
@@ -198,6 +221,8 @@ export const postMessageToBoard = async (boardId, messageContent) => {
         "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
+        username: username,
+        boardId: boardId,
         content: messageContent,
       }),
     });
@@ -213,9 +238,6 @@ export const postMessageToBoard = async (boardId, messageContent) => {
     throw error;
   }
 };
-
-
-
 
 export const fetchAllMessages = async() =>{
   try {
