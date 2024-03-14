@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Navbar.css";
 
-const Navbar = ({ username, pfp }) => {
+const Navbar = ({ username, pfp, onSignOut }) => {
   const [burgerVisibility, setBurgerVisibility] = useState(false);
 
   const handleBurger = () => {
@@ -32,7 +32,7 @@ const Navbar = ({ username, pfp }) => {
             <ul>
               <li>View Profile</li>
               <li>Settings</li>
-              <li>Log out</li>
+              <button onClick={onSignOut}>Log out</button>
             </ul>
           </div>
         </div>

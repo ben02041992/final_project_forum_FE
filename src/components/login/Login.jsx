@@ -41,6 +41,13 @@ const Login = ({ onToggle }) => {
     }
   }, []); // Empty dependency array to ensure it runs only once on mount
 
+  const handleSignOut = () => {
+    setLoginStatus("false");
+    setShowLoginForm(true);
+    console.log("Signing out...");
+    onSignOut(); // Notify parent component about sign-out
+  };
+
   return (
     <div className="selector">
       {showLoginForm ? (
@@ -96,7 +103,7 @@ const Login = ({ onToggle }) => {
           </div>
         </div>
       ) : (
-        <MainPage username={username} />
+        <MainPage username={username} onSignOut={handleSignOut} />
       )}
     </div>
   );
