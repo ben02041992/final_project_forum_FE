@@ -1,8 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 
 const Navbar = ({ username, pfp, onSignOut }) => {
   const [burgerVisibility, setBurgerVisibility] = useState(false);
+  const [isScreenSmall, setIsScreenSmall] = useState(window.innerWidth < 768);
+
+  const handleResize = () => {
+    setIsScreenSmall(window.innerWidth < 768);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const handleBurger = () => {
     setBurgerVisibility(!burgerVisibility);
@@ -21,6 +33,14 @@ const Navbar = ({ username, pfp, onSignOut }) => {
           alt="Gamer4Rum"
           src="./images/textlogo-bi.png"
         />
+        {!isScreenSmall && (
+          <p>
+            <small className="font">
+              A project by Benjamin Townsend, Quinn Greenwood, Ryan Corrigan and
+              Syeda Ume Farwa Naqvi
+            </small>{" "}
+          </p>
+        )}
       </div>
       <div className="userSettings nomobile">
         <img alt="LoggedInPFP" src={pfp} />
@@ -30,9 +50,11 @@ const Navbar = ({ username, pfp, onSignOut }) => {
           </h2>
           <div className="userOptions">
             <ul>
-              <li>View Profile</li>
-              <li>Settings</li>
-              <button onClick={onSignOut}>Log out</button>
+              {/* <li>View Profile</li>
+              <li>Settings</li> */}
+              <button className="log-but" onClick={onSignOut}>
+                Log out
+              </button>
             </ul>
           </div>
         </div>
@@ -49,9 +71,9 @@ const Navbar = ({ username, pfp, onSignOut }) => {
           }
         >
           <ul>
-            <li>View Profile</li>
-            <li>Settings</li>
-            <li>Log out</li>
+            <button className="log-but-bur" onClick={onSignOut}>
+              <p className="but-txt">Log out</p>
+            </button>
           </ul>
         </div>
       </div>
