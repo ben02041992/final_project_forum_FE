@@ -75,7 +75,7 @@ const Messagemodal = ({ game, onClose }) => {
         console.error("Error sending messages: ", error);
       }
     }
-
+};
 
 
   return (
