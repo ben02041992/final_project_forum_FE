@@ -46,7 +46,7 @@ const Recentmessages = () => {
 
   return (
     <div>
-      <h1 className="pop">Popular Boards</h1>
+      <h1 className="pop">Popular</h1>
       <ul>
         {games.map((game, index) => (
           <div

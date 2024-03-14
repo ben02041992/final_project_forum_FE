@@ -1,9 +1,12 @@
 .main-page-content {
-    display: flex;
-    flex-direction: row;
-    width: 100vh;
-    padding: 10px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 10px;
 }
 .recent-div {
   width: 25%;
+}
+.gamepage-div {
+  width: 75%;
 }
