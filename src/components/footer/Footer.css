@@ -1,0 +1,15 @@
+.footer{
+    width: 100%;
+    text-align: center;
+    border-top: solid 1px #471b6d;
+    margin-top: 20px;
+}
+.footer p{
+    margin: 20px;
+}
+.footer a{
+    font-style: italic;
+}
+.footer a:hover{
+    color: #a965d7;
+}

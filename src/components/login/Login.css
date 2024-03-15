@@ -1,5 +1,6 @@
 .selector {
-  position: relative;
+  width: 100%;
+  height: 100vh;
 }
 
 .wrapperLogin {
@@ -10,19 +11,6 @@
   align-items: center;
   justify-content: center;
   gap: 50px;
-}
-
-.logo {
-  margin: 50px;
-  height: 70%;
-  width: 45%;
-  transform: scale(0);
-  opacity: 0;
-  transition: transform 3s ease-in-out, opacity 3s ease-in-out;
-}
-.logo.appear {
-  transform: scale(1);
-  opacity: 0.7;
 }
 
 @keyframes logoAppear {
@@ -104,6 +92,20 @@
 
 
 .logo {
+  /* margin: 50px; */
+  height: 70%;
+  max-height: 460px;
+  width: auto;
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 3s ease-in-out, opacity 3s ease-in-out;
+}
+.logo.appear {
+  transform: scale(1);
+  opacity: 0.7;
+}
+
+/* .logo {
   max-width: 480px;
   width: 32%;
   height: auto;
@@ -114,7 +116,7 @@
 .logo.appear {
   transform: scale(1);
   opacity: 1;
-}
+} */
 
 .logo-name {
   background: transparent;
@@ -158,7 +160,7 @@
   border-color: rgba(194, 0, 0, 1);
 }
 
-@media only screen and (max-width: 660px) {
+@media only screen and (max-width: 1110px) {
   .wrapperLogin {
     flex-direction: column;
     gap: 20px;

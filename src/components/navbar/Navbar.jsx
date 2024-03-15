@@ -3,7 +3,6 @@ import "./Navbar.css";
 
 const Navbar = ({ username, pfp, onSignOut }) => {
   const [burgerVisibility, setBurgerVisibility] = useState(false);
-  const [isScreenSmall, setIsScreenSmall] = useState(window.innerWidth < 768);
 
   const handleResize = () => {
     setIsScreenSmall(window.innerWidth < 768);
@@ -33,14 +32,6 @@ const Navbar = ({ username, pfp, onSignOut }) => {
           alt="Gamer4Rum"
           src="./images/textlogo-bi.png"
         />
-        {!isScreenSmall && (
-          <p>
-            <small className="font">
-              A project by Benjamin Townsend, Quinn Greenwood, Ryan Corrigan and
-              Syeda Ume Farwa Naqvi
-            </small>{" "}
-          </p>
-        )}
       </div>
       <div className="userSettings nomobile">
         <img alt="LoggedInPFP" src={pfp} />
