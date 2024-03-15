@@ -4,17 +4,6 @@ import "./Navbar.css";
 const Navbar = ({ username, pfp, onSignOut }) => {
   const [burgerVisibility, setBurgerVisibility] = useState(false);
 
-  const handleResize = () => {
-    setIsScreenSmall(window.innerWidth < 768);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   const handleBurger = () => {
     setBurgerVisibility(!burgerVisibility);
   };

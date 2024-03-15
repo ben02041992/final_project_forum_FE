@@ -38,7 +38,7 @@ const Login = ({ onToggle }) => {
     if (logoElement) {
       logoElement.classList.add("appear");
     }
-  }, [showLoginForm]); // Empty dependency array to ensure it runs only once on mount
+  }, []); // Empty dependency array to ensure it runs only once on mount
 
   const handleSignOut = () => {
     setLoginStatus("false");
