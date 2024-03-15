@@ -35,11 +35,10 @@ const Login = ({ onToggle }) => {
 
   useEffect(() => {
     const logoElement = document.querySelector(".logo");
-
     if (logoElement) {
       logoElement.classList.add("appear");
     }
-  }, []); // Empty dependency array to ensure it runs only once on mount
+  }, [showLoginForm]); // Empty dependency array to ensure it runs only once on mount
 
   const handleSignOut = () => {
     setLoginStatus("false");
@@ -59,13 +58,6 @@ const Login = ({ onToggle }) => {
             srcset=""
           />
           <div className="loginBox">
-            {/* <img
-              className="logo-name"
-              src=".\images\textlogo-bi.png"
-              alt="Gamer4rum logo"
-              srcset=""
-            /> */}
-
             <h2 className="loginTitle">Login</h2>
             <form className="loginForm" onSubmit={handleSubmit}>
               <input

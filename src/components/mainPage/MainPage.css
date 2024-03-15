@@ -1,12 +1,20 @@
 .main-page-content {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 95%;
   padding: 10px;
+  justify-content: space-evenly;
+  gap:15px;
 }
 .recent-div {
-  width: 25%;
+  width: 30%;
+  min-width: 140px;
 }
 .gamepage-div {
-  width: 75%;
+  width: 70%;
+}
+@media only screen and (max-width: 660px) {
+  .main-page-content{
+    width:100%;
+  }
 }
