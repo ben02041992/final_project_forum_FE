@@ -3,6 +3,7 @@ import "./MainPage.css";
 import Gamepage from "./../gamepage/Gamepage";
 import Popmessages from "./../popmessages/Popmessages";
 import Navbar from "./../navbar/Navbar";
+import Footer from "../footer/Footer";
 
 const MainPage = ({ username, onSignOut }) => {
   const pfp = "./images/Skull_and_Crossbones_bi.png";
@@ -17,6 +18,7 @@ const MainPage = ({ username, onSignOut }) => {
           <Gamepage username={username} />
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

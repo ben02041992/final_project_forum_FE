@@ -1,0 +1,31 @@
+.footer{
+    width: 100%;
+    text-align: center;
+    border-top: solid 1px #471b6d;
+    margin-top: 20px;
+    justify-content: center;
+}
+.footer-ico{
+    display: flex;
+    justify-content: center;
+    padding-left: auto;
+    padding-right: auto;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+.icos{
+    width:30px;
+    height:auto;
+}
+.footer p{
+    margin-top: 20px;
+}
+.footer a{
+    font-style: italic;
+}
+.footer a:hover{
+    color: #a965d7;
+}
+.icos:hover{
+    fill: #a965d7;
+}

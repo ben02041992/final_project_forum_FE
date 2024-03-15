@@ -24,9 +24,14 @@ const Login = ({ onToggle }) => {
       console.log(
         "login userData:",
         userData
-      ); /*! STORE ME IN APP.JSX STATE VALUE ! PASS ME TO MODAL AND NAVBAR !*/
+      );
+      if(userData.success){
       setLoginStatus("success");
       setShowLoginForm(false);
+      }
+      else{
+        throw "Account does not exist";
+      }
     } catch (error) {
       console.error("Login failed:", error);
       setLoginStatus("error");
@@ -35,11 +40,10 @@ const Login = ({ onToggle }) => {
 
   useEffect(() => {
     const logoElement = document.querySelector(".logo");
-
     if (logoElement) {
       logoElement.classList.add("appear");
     }
-  }, []); // Empty dependency array to ensure it runs only once on mount
+  }, [showLoginForm]); // added showLoginForm so the logo is visible after logging out and returning to sign in page
 
   const handleSignOut = () => {
     setLoginStatus("false");
@@ -59,13 +63,6 @@ const Login = ({ onToggle }) => {
             srcset=""
           />
           <div className="loginBox">
-            {/* <img
-              className="logo-name"
-              src=".\images\textlogo-bi.png"
-              alt="Gamer4rum logo"
-              srcset=""
-            /> */}
-
             <h2 className="loginTitle">Login</h2>
             <form className="loginForm" onSubmit={handleSubmit}>
               <input
